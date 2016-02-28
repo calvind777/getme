@@ -1,0 +1,28 @@
+<html>
+{% load staticfiles %}
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="{% static 'social/conf/style.css' %}" />
+</head>
+<body>
+<div id="container">
+<div id="top">	
+Thanks! Hopefully your friends DM you soon. 
+
+You DM'd:
+</div>
+
+
+<ul class="list-group">
+  <li class="list-group-item">{{0name}}</li>
+  <li class="list-group-item">{{1name}}</li>
+  <li class="list-group-item">{{2name}}</li>
+  <li class="list-group-item">{{3name}}</li>
+  <li class="list-group-item">{{4name}}</li>
+</ul>
+
+</div>
+</body>
+
+
+</html>

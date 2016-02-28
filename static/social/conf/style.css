@@ -1,0 +1,25 @@
+body{
+	background-color:#00b5ec;
+	position:relative;
+}
+
+.name{
+	color:white;
+	display:inline-block;
+	font-size:2em;
+	margin:0 auto;
+text-align:center;
+}
+
+#top{
+	font-size:3em;
+	margin:0 auto;
+	color:white;
+	text-align:center;
+}
+
+.list-group{
+	width:50%;
+	margin:0 auto;
+	text-align:center;
+}
