@@ -3,7 +3,7 @@
 <head>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-<link rel="stylesheet" type="text/css" href="{% static 'social/style.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'social/posts/style.css' %}" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 </head>
 <body>
@@ -14,12 +14,14 @@ $(document).ready(function(){
 	
 	});
 </script>
+  
+
 <div id="fade">
 <div id="title">
 	GetMeThis
 </div>
 
-<form class="form-inline" action = "/confirmation" method="post">
+<form class="form-inline" action = "/get_name/" method="post">{% csrf_token %}
   <div class="form-group">
     <label for="name" class="label">I'm</label>
     <input type="text" class="form-control" id="item" name="myname" placeholder="Bob">
@@ -30,23 +32,24 @@ $(document).ready(function(){
   </div>
   <div class="form-group">
     <label for="from" class="label">From</label>
-    <input type="text" class="form-control autocomplete" id="fromwhere" name="fromwhere" placeholder="Subway">
+    <input type="text" onFocus="geolocate()" class="form-control autocomplete" id="fromwhere" name="fromwhere" placeholder="Subway">
   </div>
   <div class="form-group">
     <label for="to" class="label">Delivered to</label>
-    <input type="text" class="form-control autocomplete" id="towhere" name="towhere" placeholder="2400 Durant Avenue">
+    <input type="text" onFocus="geolocate()" class="form-control autocomplete" id="towhere" name="towhere" placeholder="2400 Durant Avenue">
   </div>
-  <a type="submit" class="btn btn-primary" id="button">Submit</a>
+  <input type="submit" class="btn btn-primary" id="button" ></input>
 </form class="form-control" id="pwd">
 </div>
 <p><a href="/logout">Logout</a>
-  <script>
+
+    <script>
       // This example displays an address form, using the autocomplete feature
       // of the Google Places API to help users fill in the information.
 
       // This example requires the Places library. Include the libraries=places
       // parameter when you first load the API. For example:
-      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+      
 
       var placeSearch, autocomplete;
       var componentForm = {
@@ -62,20 +65,16 @@ $(document).ready(function(){
         // Create the autocomplete object, restricting the search to geographical
         // location types.
         autocomplete = new google.maps.places.Autocomplete(
-            /** @type {!HTMLInputElement} */(document.getElementsByClassName('autocomplete')),
+            (document.getElementById('fromwhere')),
             {types: ['geocode']});
 
-       
+       autocomplete2=new google.maps.places.Autocomplete(
+            (document.getElementById('towhere')),
+            {types: ['geocode']});
         
       }
 
      
-        // Get each component of the address from the place details
-        // and fill the corresponding field on the form.
-       
-
-      // Bias the autocomplete object to the user's geographical location,
-      // as supplied by the browser's 'navigator.geolocation' object.
       function geolocate() {
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(function(position) {
@@ -83,18 +82,19 @@ $(document).ready(function(){
               lat: position.coords.latitude,
               lng: position.coords.longitude
             };
+            console.log(geolocation);
             var circle = new google.maps.Circle({
               center: geolocation,
               radius: position.coords.accuracy
             });
             autocomplete.setBounds(circle.getBounds());
+            autocomplete2.setBounds(circle.getBounds());
           });
         }
       }
     </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEYytbmIttMxJUz4ll4KUCXjkOCk3ElA4&libraries=places&callback=initAutocomplete" async defer> </script>
     
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEYytbmIttMxJUz4ll4KUCXjkOCk3ElA4&libraries=places&callback=initAutocomplete"
-        async defer></script>
 </body>
 
 

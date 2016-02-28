@@ -26,5 +26,6 @@ urlpatterns = [
     url(r'^submit/$','django_social.views.submit' ),
     url(r'^twitter/$','django_social.views.twitter' ),
     url(r'^complete/twitter$','django_social.views.callback' ),
-    url(r'^confirmation/$','django_social.views.get_name' ),
+    url(r'^confirmation/$','django_social.views.confirmation' ),
+    url(r'^get_name/$','django_social.views.get_name' ),
 ]

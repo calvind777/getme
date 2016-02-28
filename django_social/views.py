@@ -95,7 +95,7 @@ def callback(request):
     return render_to_response('index.html',c)
 
 def confirmation(request):
-    return render('confirmation.html')
+    return render(request,'confirmation.html')
 
 def home(request):
     return render_to_response('index.html')
@@ -107,10 +107,11 @@ def get_name(request):
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
         form = NameForm(request.POST)
+
         # check whether it's valid:
         if form.is_valid():
+            return submit(request,form.cleaned_data.get('myname'),form.cleaned_data.get('myfood'),form.cleaned_data.get('towhere'),form.cleaned_data.get('fromwhere'))
             
-            return HttpResponseRedirect('/confirmation')
 
     # if a GET (or any other method) we'll create a blank form
     else:
@@ -124,19 +125,45 @@ def logout(request):
     return redirect('/')
 
 
-def submit(request):
+def submit(request,myname,myfood,towhere,fromwhere):
     headeroauth = OAuth1(client_key, client_secret,
                      resource_owner_key, resource_owner_secret,
                      signature_type='auth_header')
-    url='https://api.twitter.com/1.1/direct_messages/new.json?'
-    print(5)
     
-    postdata = {
-    'text': 'http://www.google.com',
-    'screen_name': 'jamelao118',
-    }
-    r = requests.post(url, data=postdata,auth=headeroauth)
-    print(r.text)
-    return render_to_response('index.html')
+
+
+
+    userurl='https://api.twitter.com/1.1/account/verify_credentials.json'
+    userinfo=requests.get(userurl,auth=headeroauth).json()
+    theid=userinfo["id_str"]
+    screen_name=userinfo["screen_name"]
+
+    #print(theid)
+    url='https://api.twitter.com/1.1/direct_messages/new.json?'
+    
+    
+    personsfollowing='https://api.twitter.com/1.1/friends/list.json'
+    friendparams={'screen_name':screen_name,'count':200,}
+    friendresponse=requests.get(personsfollowing,params=friendparams,auth=headeroauth).json()
+   
+    friendlist=friendresponse["users"]
+    count=0
+    frienddict={}
+    for userobject in friendlist:
+        if (count==5):
+            break
+        key=str(count)+"name"
+        frienddict[key]=userobject['name']
+        frienddict[str(count)+key]=userobject['screen_name']
+        count+=1
+    print(frienddict)
+    for x in range(0,5):
+        postdata = {
+        'text': myname+" is asking for "+myfood+" from "+fromwhere+" delivered to "+towhere+". Thanks!" ,
+        'screen_name': frienddict[str(x)+str(x)+"name"],
+        }
+        r = requests.post(url, data=postdata,auth=headeroauth)
+    #print(r.text)
+    return render(request,'confirmation.html',context=frienddict)
     
     
