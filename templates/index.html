@@ -19,28 +19,82 @@ $(document).ready(function(){
 	GetMeThis
 </div>
 
-<form class="form-inline">
+<form class="form-inline" action = "/confirmation" method="post">
   <div class="form-group">
-    <label for="exampleInputName2" class="label">I'm</label>
-    <input type="text" class="form-control" id="item" placeholder="Bob">
+    <label for="name" class="label">I'm</label>
+    <input type="text" class="form-control" id="item" name="myname" placeholder="Bob">
   </div>
   <div class="form-group">
-    <label for="exampleInputName2" class="label">Get me</label>
-    <input type="text"  class="form-control" id="item" placeholder="Food">
+    <label for="food" class="label">Get me</label>
+    <input type="text"  class="form-control" id="item" name="myfood" placeholder="Food">
   </div>
   <div class="form-group">
-    <label for="exampleInputEmail2" class="label">From</label>
-    <input type="text" class="form-control autocomplete" id="fromwhere" placeholder="Subway">
+    <label for="from" class="label">From</label>
+    <input type="text" class="form-control autocomplete" id="fromwhere" name="fromwhere" placeholder="Subway">
   </div>
   <div class="form-group">
-    <label for="exampleInputEmail2" class="label">Delivered to</label>
-    <input type="text" class="form-control autocomplete" id="towhere" placeholder="2400 Durant Avenue">
+    <label for="to" class="label">Delivered to</label>
+    <input type="text" class="form-control autocomplete" id="towhere" name="towhere" placeholder="2400 Durant Avenue">
   </div>
-  <a href="/submit" class="btn btn-primary" id="button">Submit</a>
+  <a type="submit" class="btn btn-primary" id="button">Submit</a>
 </form class="form-control" id="pwd">
 </div>
 <p><a href="/logout">Logout</a>
+  <script>
+      // This example displays an address form, using the autocomplete feature
+      // of the Google Places API to help users fill in the information.
 
+      // This example requires the Places library. Include the libraries=places
+      // parameter when you first load the API. For example:
+      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+
+      var placeSearch, autocomplete;
+      var componentForm = {
+        street_number: 'short_name',
+        route: 'long_name',
+        locality: 'long_name',
+        administrative_area_level_1: 'short_name',
+        country: 'long_name',
+        postal_code: 'short_name'
+      };
+
+      function initAutocomplete() {
+        // Create the autocomplete object, restricting the search to geographical
+        // location types.
+        autocomplete = new google.maps.places.Autocomplete(
+            /** @type {!HTMLInputElement} */(document.getElementsByClassName('autocomplete')),
+            {types: ['geocode']});
+
+       
+        
+      }
+
+     
+        // Get each component of the address from the place details
+        // and fill the corresponding field on the form.
+       
+
+      // Bias the autocomplete object to the user's geographical location,
+      // as supplied by the browser's 'navigator.geolocation' object.
+      function geolocate() {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var geolocation = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+            var circle = new google.maps.Circle({
+              center: geolocation,
+              radius: position.coords.accuracy
+            });
+            autocomplete.setBounds(circle.getBounds());
+          });
+        }
+      }
+    </script>
+    
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEYytbmIttMxJUz4ll4KUCXjkOCk3ElA4&libraries=places&callback=initAutocomplete"
+        async defer></script>
 </body>
 
 

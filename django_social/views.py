@@ -94,11 +94,29 @@ def callback(request):
     
     return render_to_response('index.html',c)
 
-
+def confirmation(request):
+    return render('confirmation.html')
 
 def home(request):
     return render_to_response('index.html')
 
+from .forms import NameForm
+
+def get_name(request):
+    
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        form = NameForm(request.POST)
+        # check whether it's valid:
+        if form.is_valid():
+            
+            return HttpResponseRedirect('/confirmation')
+
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        form = NameForm()
+
+    return render(request, 'index.html', {'form': form})
 
 
 def logout(request):
