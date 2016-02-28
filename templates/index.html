@@ -1,0 +1,47 @@
+{% load staticfiles %}
+<html>
+<head>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="{% static 'social/style.css' %}" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+</head>
+<body>
+
+<script>
+$(document).ready(function(){
+	$("#fade").fadeIn(1200);
+	
+	});
+</script>
+<div id="fade">
+<div id="title">
+	GetMeThis
+</div>
+
+<form class="form-inline">
+  <div class="form-group">
+    <label for="exampleInputName2" class="label">I'm</label>
+    <input type="text" class="form-control" id="item" placeholder="Bob">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputName2" class="label">Get me</label>
+    <input type="text" class="form-control" id="item" placeholder="Food">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail2" class="label">From</label>
+    <input type="text" class="form-control" id="fromwhere" placeholder="Subway">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail2" class="label">Delivered to</label>
+    <input type="text" class="form-control" id="towhere" placeholder="2400 Durant Avenue">
+  </div>
+  <button type="submit" class="btn btn-primary" id="button">Submit</button>
+</form class="form-control" id="pwd">
+</div>
+<p><a href="/logout">Logout</a>
+
+</body>
+
+
+</html>
