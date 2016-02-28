@@ -22,4 +22,5 @@ urlpatterns = [
      url(r'^$', 'django_social.views.login'),
     url(r'^home/$', 'django_social.views.home'),
     url(r'^logout/$', 'django_social.views.logout'),
+    url(r'^submit/$','django_social.views.submit' ),
 ]
