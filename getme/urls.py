@@ -20,7 +20,10 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
      url('', include('social.apps.django_app.urls', namespace='social')),
      url(r'^$', 'django_social.views.login'),
+
     url(r'^home/$', 'django_social.views.home'),
     url(r'^logout/$', 'django_social.views.logout'),
     url(r'^submit/$','django_social.views.submit' ),
+    url(r'^twitter/$','django_social.views.twitter' ),
+    url(r'^complete/twitter$','django_social.views.callback' ),
 ]
