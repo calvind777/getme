@@ -34,7 +34,7 @@ def login(request):
 @ensure_csrf_cookie
 @csrf_protect
 def twitter(request):
-    print(8)
+    
     c = {}
     c.update(csrf(request))
     request_token_url = 'https://api.twitter.com/oauth/request_token'
@@ -47,7 +47,7 @@ def twitter(request):
     base_authorization_url = 'https://api.twitter.com/oauth/authorize'
     authorize_url = base_authorization_url + '?oauth_token='
     authorize_url = authorize_url + resource_owner_key
-    redirect_response=HttpResponseRedirect("http://www.get-me-this.herokuapp.com"+authorize_url)
+    redirect_response=HttpResponseRedirect(authorize_url)
     return redirect_response
 
 @ensure_csrf_cookie
@@ -92,7 +92,7 @@ def callback(request):
 
 
     
-    return render_to_response('index.html',c)
+    return HttpResponseRedirect("http://www.get-me-this.herokuapp.com"+'?oauth_token='+resource_owner_key+resource_owner_secret)
 
 def confirmation(request):
     return render(request,'confirmation.html')
