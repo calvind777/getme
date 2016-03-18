@@ -1,4 +1,7 @@
 requests==2.8.1
 requests-oauthlib==0.6.1
 gunicorn==19.4.5
-django==1.9.4
+oauthlib==1.0.1
+python-openid==2.2.5
+python-social-auth==0.2.12
+Django==1.9.4
