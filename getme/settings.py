@@ -30,7 +30,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 
-STATIC_ROOT = 'initstatic'
+STATIC_ROOT = '/initstatic'
 
 
 # Application definition
@@ -167,6 +167,6 @@ TEMPLATES = [
 
 STATIC_URL = '/static/'
 
-#STATICFILES_DIRS = [
- #   os.path.join(BASE_DIR, "static"),
- #   ]
+STATICFILES_DIRS = [
+  os.path.join(BASE_DIR, "static"),
+    ]
