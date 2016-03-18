@@ -177,7 +177,7 @@ def submit(request,myname,myfood,towhere,fromwhere):
         'text': myname+" is asking for "+myfood+" from "+fromwhere+" delivered to "+towhere+". Thanks!" ,
         'user_id': x,
         }
-        r = requests.post(url, data=postdata,auth=headeroauth)
+        #r = requests.post(url, data=postdata,auth=headeroauth)
         i = i + 1
         
     #print(r.text)
