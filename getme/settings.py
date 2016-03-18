@@ -172,6 +172,7 @@ STATICFILES_DIRS = [
     ]
 
 import dj_database_url
-DATABASES['default'] = dj_database_url.config()
+db_from_env = dj_database_url.config()
+DATABASES['default'].update(db_from_env)
 
 
