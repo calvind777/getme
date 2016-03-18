@@ -13,7 +13,7 @@ boto==2.38.0
 cffi==1.2.1
 clyent==1.2.1
 colorama==0.3.3
-conda==3.18.3
+conda==4.0.5
 conda-build==1.18.1
 conda-env==2.4.4
 configobj==5.0.6
