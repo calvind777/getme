@@ -1,4 +1,6 @@
 dj-database-url==0.4.0
+oauthlib==1.0.1
+python-openid==2.2.5
 python-social-auth==0.2.12
 Django==1.9.1
 gunicorn==19.4.5
