@@ -28,4 +28,4 @@ urlpatterns = [
     url(r'^complete/twitter$','django_social.views.callback' ),
     url(r'^confirmation/$','django_social.views.confirmation' ),
     url(r'^get_name/$','django_social.views.get_name' ),
-]
+]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

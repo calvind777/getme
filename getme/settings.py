@@ -60,7 +60,7 @@ MIDDLEWARE_CLASSES = [
 
 ROOT_URLCONF = 'getme.urls'
 
-STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
