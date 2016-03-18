@@ -60,7 +60,7 @@ MIDDLEWARE_CLASSES = [
 
 ROOT_URLCONF = 'getme.urls'
 
-STATIC_ROOT = 'getme/initstatic'
+STATIC_ROOT = 'initstatic'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
