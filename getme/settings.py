@@ -79,7 +79,7 @@ TEMPLATES = [
     },
 ]
 
-LOGIN_REDIRECT_URL = '/home'
+LOGIN_REDIRECT_URL = '/twitter'
 
 WSGI_APPLICATION = 'getme.wsgi.application'
 
