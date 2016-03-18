@@ -47,7 +47,7 @@ def twitter(request):
     base_authorization_url = 'https://api.twitter.com/oauth/authorize'
     authorize_url = base_authorization_url + '?oauth_token='
     authorize_url = authorize_url + resource_owner_key
-    redirect_response=HttpResponseRedirect(authorize_url)
+    redirect_response=HttpResponseRedirect("http://www.get-me-this.herokuapp.com"+authorize_url)
     return redirect_response
 
 @ensure_csrf_cookie
